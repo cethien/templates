@@ -12,10 +12,6 @@
         ];
 
         shellHook = ''
-          if [ ! -f .envrc ]; then
-            echo "use flake" >> .envrc && direnv allow          
-          fi
-
           if [ ! -d .git ]; then
             ${pkgs.git}/bin/git init && git add .
             lefthook install

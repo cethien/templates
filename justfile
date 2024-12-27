@@ -4,4 +4,3 @@
 
 @create-dummy-project dest template="empty":
     nix flake new -t .#{{template}} {{dest}}
-    cd {{dest}}
