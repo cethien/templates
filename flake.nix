@@ -28,7 +28,7 @@
 
       templates = {
         empty = {
-          path = ./empty;
+          path = ./empty-project;
           description = "A basic project";
         };
 
