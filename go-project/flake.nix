@@ -13,7 +13,7 @@
 
           gnumake
 
-          go_1_22
+          go
           gopls
 
           wgo
@@ -32,16 +32,16 @@
             mv cmd/go-project cmd/"$module_name" &&
 
 			# Extract the owner and repo from the Go module path (assumed format: github.com/{owner}/{repo})
-            owner=$(echo "$MOD_NAME" | awk -F/ '{print $MOD_NAME}')
+            owner=$(echo "$MOD_NAME" | awk -F/ '{print $2}')
             sed -i "s|ghcr.io/owner/{{ .ProjectName }}:latest|ghcr.io/$owner/{{ .ProjectName }}:latest|" .goreleaser.yml &&
             sed -i "s|ghcr.io/owner/{{ .ProjectName }}:{{ .Tag }}|ghcr.io/$owner/{{ .ProjectName }}:{{ .Tag }}|" .goreleaser.yml &&
 
-            ${pkgs.go}/bin/go mod init $MOD_NAME &&
-            ${pkgs.go}/bin/go mod tidy
+            go mod init $MOD_NAME &&
+            go mod tidy
           fi
 
           if [ ! -d .git ]; then
-            ${pkgs.git}/bin/git init && git add . && echo "chore: init" > .git/COMMIT_EDITMSG
+            git init && git add . && echo "chore: init" > .git/COMMIT_EDITMSG
             lefthook install
           fi
         '';
@@ -49,6 +49,6 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
   };
 }
