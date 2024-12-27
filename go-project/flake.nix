@@ -44,6 +44,10 @@
             git init && git add . && echo "chore: init" > .git/COMMIT_EDITMSG
             lefthook install
           fi
+
+		  if [ ! -f .env ] && [ -f .env.template ]; then
+		    cp .env.template .env
+		  fi
         '';
       };
     };
