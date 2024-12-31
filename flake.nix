@@ -20,9 +20,11 @@
         ];
 
         shellHook = ''
-          if [ ! -f .envrc ]; then
-            echo "use flake" > .envrc && direnv allow
-          fi
+          # for all directories called <lang>-project
+          for dir in $(find . -type d -name '*-project'); do
+            mkdir -p $dir/.git
+            touch $dir/.git/DUMMY_GIT_REPO_FOR_DEVELOPMENT
+          done
         '';
       };
 

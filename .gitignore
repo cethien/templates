@@ -1,1 +1,11 @@
 .direnv/
+
+*-project/flake.lock
+*-project/.direnv/
+*-project/.git/
+*-project/.env
+
+go-project/tmp/
+go-project/dist/
+go-project/go.mod
+go-project/go.sum

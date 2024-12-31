@@ -13,3 +13,6 @@ alias l := lint
 @create-dummy-project template="empty" dest="~/projects/dummy":
     rm -rf {{dest}}
     nix flake new -t .#{{template}} {{dest}}
+
+@cleanup-go-project:
+    rm -rf go-project/{flake.lock,.direnv,.git,go.mod,go.sum,.env,tmp,dist}
