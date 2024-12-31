@@ -11,14 +11,14 @@
           lefthook
           commitlint-rs
 
-          gnumake
+		  just
 
           go
-          gopls
-
           wgo
-          goreleaser
+          gopls
+		  delve
           go-tools
+          goreleaser
         ];
 
         shellHook = ''
