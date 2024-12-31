@@ -1,7 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"log/slog"
+	"os"
+	"os/signal"
+	"syscall"
+)
 
 func main() {
-	fmt.Println(msg)
+	slog.Info(msg)
+
+	sigChan := make(chan os.Signal, 1)
+	signal.Notify(sigChan, syscall.SIGINT, syscall.SIGTERM)
+	<-sigChan
+
+	slog.Info("Shutting down. Bye!")
 }
