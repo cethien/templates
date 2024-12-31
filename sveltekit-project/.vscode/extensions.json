@@ -4,6 +4,8 @@
 		"ardenivanov.svelte-intellisense",
 		"bradlc.vscode-tailwindcss",
 		"antfu.iconify",
-		"ms-azuretools.vscode-docker"
+        "ms-azuretools.vscode-docker",
+        "mkhl.direnv",
+        "arrterian.nix-env-selector"
 	]
 }
