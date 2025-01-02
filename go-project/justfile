@@ -1,21 +1,16 @@
 app_name := "go-project"
 entrypoint := "cmd/" + app_name
 binary := "tmp/" + app_name
-debug := "false"
 
 [private]
 @default:
     just --list
 
-@setup:
-	just cleanup build
+@setup: cleanup build
 
 @cleanup:
 	rm -rf dist/ tmp/
 	find . -type d -empty -delete
-
-@download:
-	go mod tidy
 
 @update:
 	go get -u ./...
@@ -23,8 +18,8 @@ debug := "false"
 @build:
 	go build -tags='dev' -o {{binary}} ./{{entrypoint}}
 
-@run:
-	{{binary}}
+@run *args:
+	{{binary}} {{args}}
 
 debug:
 	#!/usr/bin/env bash
@@ -34,8 +29,8 @@ debug:
 		--headless --listen :2345 --api-version 2
 	done
 
-@dev:
-	wgo -file .go go mod tidy :: just build :: just run
+@dev *args:
+	wgo -file .go go mod tidy :: just build :: just run {{args}}
 
 @dev-debug:
 	wgo -file .go go mod tidy :: just debug
