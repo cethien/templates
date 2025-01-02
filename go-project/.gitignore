@@ -3,3 +3,4 @@
 !*.env.template
 tmp/
 dist/
+data/

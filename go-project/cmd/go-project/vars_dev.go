@@ -8,6 +8,5 @@ import (
 )
 
 var (
-	DefaultMessage = "Hello, world! [DEV]"
 	DefaultHTTPPort = 8080
 )

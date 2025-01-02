@@ -4,6 +4,5 @@
 package main
 
 var (
-	DefaultMessage = "Hello, world!"
 	DefaultHTTPPort = 80
 )

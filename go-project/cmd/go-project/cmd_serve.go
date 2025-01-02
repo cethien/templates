@@ -10,12 +10,13 @@ import (
 	"syscall"
 	"time"
 
+	"example.com/go-project/store/sqlite"
 	"example.com/go-project/web"
 	"github.com/urfave/cli/v2"
 )
 
 func init() {
-	app.Commands = append(app.Commands, serveCmd)
+	cmd.Commands = append(cmd.Commands, serveCmd)
 }
 
 var (
@@ -74,5 +75,6 @@ func serveCmdAction(c *cli.Context) error {
 		return err
 	}
 	slog.Info("http server shutdown complete")
-	return nil
+
+	return sqlite.DB().Close()
 }

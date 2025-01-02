@@ -3,11 +3,12 @@ package main
 import (
 	"log/slog"
 
+	"example.com/go-project/store/sqlite"
 	"github.com/urfave/cli/v2"
 )
 
 func init() {
-	app.Commands = append(app.Commands, runCmd)
+	cmd.Commands = append(cmd.Commands, runCmd)
 }
 
 var (
@@ -19,6 +20,10 @@ var (
 )
 
 func runCmdAction(c *cli.Context) error {
-	slog.Info("Hello, world!")
-	return nil
+	msg, err := sqlite.Queries().SelectMessage(c.Context)
+	if err != nil {
+		return err
+	}
+	slog.Info(msg)
+	return sqlite.DB().Close()
 }

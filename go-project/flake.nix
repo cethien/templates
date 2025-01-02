@@ -18,6 +18,9 @@
           gopls
 		  delve
           go-tools
+
+		  goose
+
           goreleaser
         ];
 

@@ -3,6 +3,7 @@ package handler
 import (
 	"net/http"
 
+	"example.com/go-project/store/sqlite"
 	"github.com/labstack/echo/v4"
 )
 
@@ -11,5 +12,10 @@ func init() {
 }
 
 func indexHandler(c echo.Context) error {
-	return c.String(http.StatusOK, "Hello, world!")
+	msg, err := sqlite.Queries().SelectMessage(c.Request().Context())
+	if err != nil {
+		return err
+	}
+
+	return c.String(http.StatusOK, msg)
 }
