@@ -26,6 +26,7 @@
             read -p "Module name: " MOD_NAME
 
             # nix templates dont support placeholders, so heres a lot of crap
+			find . -type f ! -name 'flake.nix' -exec sed -i "s|example.com/go-project|$MOD_NAME|g" {} + &&
 			module_name=$(basename "$MOD_NAME") &&
             trimmed_module_name=$(echo "$module_name" | sed 's/[-_]//g')
 			find . -type f ! -name 'flake.nix' -exec sed -i "s/go-project/$module_name/g" {} + &&
