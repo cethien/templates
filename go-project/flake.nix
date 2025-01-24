@@ -26,7 +26,7 @@
 
         shellHook = ''
           if [ ! -f go.mod ]; then
-            read -p "Module name: " MOD_NAME
+            MOD_NAME=github.com/$USER/$(basename "$PWD")
 
             # nix templates dont support placeholders, so heres a lot of crap
 			find . -type f ! -name 'flake.nix' -exec sed -i "s|example.com/go-project|$MOD_NAME|g" {} + &&
