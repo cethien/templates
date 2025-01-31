@@ -44,11 +44,6 @@
           description = "bun project";
         };
 
-        sveltekit = {
-          path = ./sveltekit-project;
-          description = "sveltekit project with some tools i usually use";
-        };
-
         default = self.templates.empty;
       };
     };
