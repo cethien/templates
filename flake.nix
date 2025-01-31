@@ -39,6 +39,11 @@
           description = "go project with some tools i usually use";
         };
 
+        bun = {
+          path = ./bun-project;
+          description = "bun project";
+        };
+
         sveltekit = {
           path = ./sveltekit-project;
           description = "sveltekit project with some tools i usually use";
