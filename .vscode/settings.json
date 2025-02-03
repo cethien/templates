@@ -8,5 +8,8 @@
       }
     }
   },
-  "direnv.restart.automatic": true
+  "direnv.restart.automatic": true,
+  "files.exclude": {
+    "**/.git": false
+  }
 }
