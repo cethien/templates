@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "build:css": "tailwind -i assets/styles.css -o static/styles.css --minify"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "prettier": "^3.4.2",
+    "tailwindcss": "3"
+  }
+}

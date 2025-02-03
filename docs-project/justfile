@@ -1,0 +1,15 @@
+[private]
+@default:
+    just --list
+
+@build file format="pdf":
+    bun run build:css && \
+    mkdir -p out && \
+    pandoc \
+    --pdf-engine=wkhtmltopdf \
+    -V margin-top=0 -V margin-bottom=0 -V margin-left=0 -V margin-right=0 \
+    --css ./static/styles.css \
+    -s {{file}} -o ./out/{{file_stem(file)}}.{{format}}
+
+@dev file format="pdf":
+    wgo -dir=docs -dir=assets clear :: just build {{file}} {{format}}

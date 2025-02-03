@@ -44,6 +44,11 @@
           description = "bun project";
         };
 
+        docs = {
+          path = ./docs-project;
+          description = "docs project. markdown + css -> pdf via pandoc";
+        };
+
         default = self.templates.empty;
       };
     };
