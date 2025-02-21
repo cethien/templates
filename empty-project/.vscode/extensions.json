@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "mkhl.direnv",
+    "arrterian.nix-env-selector",
+    "editorconfig.editorconfig"
+  ]
+}

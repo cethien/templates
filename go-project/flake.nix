@@ -13,26 +13,23 @@
 
           go
           gopls
+          golangci-lint
+
           go-tools
-	        delve
-
-		      just
+          impl
           wgo
+          delve
 
-          goreleaser
+          just
         ];
 
         shellHook = ''
           if [ ! -d .git ]; then
-            git init && git add . && echo "chore: init" > .git/COMMIT_EDITMSG   
-          fi
+            git init && git add . && echo "chore: init" >.git/COMMIT_EDITMSG
 
-          if [ -f lefthook.yaml ]; then
-            lefthook install
-          fi
-
-          if [ ! -f .goreleaser.yaml ]; then
-            goreleaser init
+            if [ -f lefthook.yaml ]; then
+              lefthook install
+            fi
           fi
 
           if [ -f go.mod ]; then

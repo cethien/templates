@@ -14,8 +14,11 @@
 
         shellHook = ''
           if [ ! -d .git ]; then
-            ${pkgs.git}/bin/git init && git add .
-            lefthook install
+            git init && git add . && echo "chore: init" >.git/COMMIT_EDITMSG
+
+            if [ -f lefthook.yaml ]; then
+              lefthook install
+            fi
           fi
         '';
       };

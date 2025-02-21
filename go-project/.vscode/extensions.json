@@ -1,6 +1,8 @@
 {
 	"recommendations": [
-		"golang.go", 
+		"mkhl.direnv",
+		"arrterian.nix-env-selector",
 		"editorconfig.editorconfig",
+		"golang.go"
 	]
 }

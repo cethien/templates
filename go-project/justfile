@@ -10,6 +10,9 @@ binary := "tmp/" + app_name
 
 @setup: cleanup build
 
+@format:
+	go fmt ./...
+
 @cleanup:
 	rm -rf dist/ tmp/
 	find . -type d -empty -delete
@@ -36,26 +39,3 @@ debug:
 
 @dev-debug:
 	wgo -file .go go mod tidy :: just debug
-
-@create-db-migration name:
-	goose -dir store/sqlite/migrations create {{name}} sql
-
-@db-migrate: build
-	{{binary}} database migrate
-
-@db-rollback: build
-	{{binary}} database rollback
-
-@create-release-snapshot:
-	goreleaser release --snapshot --clean
-
-create-git-release-tag:
-	#!/usr/bin/env bash
-	TAG=v$(cat .version)
-	echo "Creating git tag $TAG"
-	git tag -f -a $TAG -m "Release $TAG"
-
-push-git-release-tag:
-	#!/usr/bin/env bash
-	TAG=v$(cat .version)
-	git push origin $TAG
