@@ -39,11 +39,6 @@
           description = "go project with some tools i usually use";
         };
 
-        bun = {
-          path = ./bun-project;
-          description = "bun project";
-        };
-
         default = self.templates.empty;
       };
     };
