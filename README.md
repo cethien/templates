@@ -12,4 +12,3 @@ nix flake new -t github:cethien/templates#<type> /path/to/destination
 
 - `empty`
 - `go`
-- `sveltekit`
