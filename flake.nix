@@ -1,21 +1,21 @@
 {
   description = "my collection of project templates, managed with nix";
 
-  outputs = inputs @ { self, ... }:
-    let
-      system = "x86_64-linux";
-      pkgs = import inputs.nixpkgs {
+  outputs = {
+    self,
+    flake-utils,
+    nixpkgs,
+    ...
+  }:
+    flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
-    in
-    {
-
-      devShells.x86_64-linux.default = pkgs.mkShell {
-        buildInputs = with pkgs; [
-          nil
+    in {
+      devShells.default = pkgs.mkShell {
+        packages = with pkgs; [
           nixpkgs-fmt
-
           just
         ];
 
@@ -27,7 +27,8 @@
           done
         '';
       };
-
+    })
+    // {
       templates = {
         empty = {
           path = ./empty-project;
@@ -43,5 +44,8 @@
       };
     };
 
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
 }

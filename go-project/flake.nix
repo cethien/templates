@@ -1,26 +1,32 @@
 {
-  outputs = { self, nixpkgs }:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
-    in
-    {
-      devShells.x86_64-linux.default = pkgs.mkShell {
-        buildInputs = with pkgs; [
+  outputs = {
+    self,
+    flake-utils,
+    nixpkgs,
+  }:
+    flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = import nixpkgs {
+        inherit system;
+      };
+
+      goEnv = with pkgs; [
+        go
+        gopls
+        golangci-lint
+        go-tools
+        impl
+        wgo
+        delve
+      ];
+    in {
+      devShells.default = pkgs.mkShell {
+        packages = with pkgs; [
           git
           lefthook
           commitlint-rs
 
-          go
-          gopls
-          golangci-lint
-
-          go-tools
-          impl
-          wgo
-          delve
-
           just
+          goEnv
         ];
 
         shellHook = ''
@@ -37,9 +43,10 @@
           fi
         '';
       };
-    };
+    });
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 }
